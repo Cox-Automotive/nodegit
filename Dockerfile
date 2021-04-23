@@ -6,8 +6,8 @@ FROM node as builder
 WORKDIR /usr/src/app
 
 RUN apt-get update && \
-  apt-get install dh-autoreconf libcurl4-gnutls-dev libexpat1-dev gettext libz-dev libssl-dev dos2unix -y && \
   cd /var/tmp && \
+  apt-get install dh-autoreconf libcurl4-gnutls-dev libexpat1-dev gettext libz-dev libssl-dev dos2unix -y && \
   curl -L https://github.com/git/git/archive/refs/tags/v2.31.1.tar.gz --output git.tar.gz && \
   tar -zxf git.tar.gz && \
   cd git-2.31.1 && \
@@ -25,5 +25,5 @@ FROM node as app
 WORKDIR /usr/src/app
 
 COPY --from=builder /libtmp/ /usr/lib/x86_64-linux-gnu/
-COPY --from=builder /usr/bin/git* /usr/bin/
+COPY --from=builder /usr/bin/git* /usr/bin/dos2unix /usr/bin/
 COPY --from=builder /usr/libexec/git-core/ /usr/libexec/git-core/
