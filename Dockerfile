@@ -6,7 +6,7 @@ FROM node as builder
 WORKDIR /usr/src/app
 
 RUN apt-get update && \
-  apt-get install dh-autoreconf libcurl4-gnutls-dev libexpat1-dev gettext libz-dev libssl-dev -y && \
+  apt-get install dh-autoreconf libcurl4-gnutls-dev libexpat1-dev gettext libz-dev libssl-dev dos2unix -y && \
   cd /var/tmp && \
   curl -L https://github.com/git/git/archive/refs/tags/v2.31.1.tar.gz --output git.tar.gz && \
   tar -zxf git.tar.gz && \
